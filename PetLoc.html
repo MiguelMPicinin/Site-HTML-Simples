@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetLoc - Encontre seu Pet Perdido</title>
+    <style>
+        :root {
+            --primary-color: #1A73E8;
+            --secondary-color: #FFFFFF;
+            --accent-color: #F5F5F5;
+            --text-color: #333333;
+            --light-text: #FFFFFF;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 4rem 2rem;
+            background-color: var(--accent-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background-color: var(--secondary-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .step-number {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        /* App Screens */
+        .app-screens {
+            padding: 4rem 2rem;
+            background-color: var(--accent-color);
+        }
+
+        .screens-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .screen {
+            width: 250px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .screen:hover {
+            transform: translateY(-10px);
+        }
+
+        .screen img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Team Section */
+        .team {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .member-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            font-size: 3rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: var(--light-text);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--light-text);
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-section a:hover {
+            opacity: 0.8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .steps {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <span class="logo-icon">🐾</span>
+                <h1>PetLoc</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#sobre">Sobre</a>
+                <a href="#funcionalidades">Funcionalidades</a>
+                <a href="#como-funciona">Como Funciona</a>
+                <a href="#equipe">Equipe</a>
+                <a href="#contato">Contato</a>
+            </div>
+            <div class="mobile-menu">☰</div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="sobre">
+        <div class="hero-content">
+            <h2>Encontre seu Pet Perdido com o PetLoc</h2>
+            <p>O PetLoc é uma solução completa para ajudar tutores a localizar seus animais de estimação perdidos. Com nossa coleira inteligente e comunidade engajada, aumentamos as chances de reencontro.</p>
+            <a href="#download" class="cta-button">Baixe o App Agora</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="funcionalidades">
+        <div class="section-title">
+            <h2>Funcionalidades Principais</h2>
+            <p>Conheça tudo que o PetLoc oferece para você e seu pet</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📍</div>
+                <h3>Rastreamento em Tempo Real</h3>
+                <p>Monitore a localização do seu pet em tempo real através do GPS integrado na coleira.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Comunidade Ativa</h3>
+                <p>Conecte-se com outros tutores para ajudar na busca por pets desaparecidos.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛒</div>
+                <h3>Loja Integrada</h3>
+                <p>Compre produtos para seu pet diretamente pelo aplicativo.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔔</div>
+                <h3>Alertas de Perímetro</h3>
+                <p>Receba notificações quando seu pet sair da área de segurança definida.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="como-funciona">
+        <div class="section-title">
+            <h2>Como Funciona</h2>
+            <p>Simples e eficiente para sua tranquilidade</p>
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Adquira a Coleira</h3>
+                <p>Compre nossa coleira inteligente com QR Code e GPS integrado.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Cadastre seu Pet</h3>
+                <p>Baixe o app e cadastre as informações do seu pet.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Monitore</h3>
+                <p>Acompanhe a localização do seu pet em tempo real.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Conecte-se</h3>
+                <p>Faça parte da comunidade e ajude outros tutores.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Screens -->
+    <section class="app-screens">
+        <div class="section-title">
+            <h2>Interface do Aplicativo</h2>
+            <p>Design intuitivo e fácil de usar</p>
+        </div>
+        <div class="screens-container">
+            <div class="screen">
+                <img src="https://via.placeholder.com/250x500/1A73E8/FFFFFF?text=Tela+Principal" alt="Tela Principal do App">
+            </div>
+            <div class="screen">
+                <img src="https://via.placeholder.com/250x500/FFFFFF/1A73E8?text=Pets+Cadastrados" alt="Tela de Pets Cadastrados">
+            </div>
+            <div class="screen">
+                <img src="https://via.placeholder.com/250x500/1A73E8/FFFFFF?text=Mapa+de+Localização" alt="Mapa de Localização">
+            </div>
+            <div class="screen">
+                <img src="https://via.placeholder.com/250x500/FFFFFF/1A73E8?text=Comunidade" alt="Tela da Comunidade">
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team" id="equipe">
+        <div class="section-title">
+            <h2>Nossa Equipe</h2>
+            <p>Conheça os desenvolvedores do PetLoc</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-avatar">L</div>
+                <h3>Luisa Torrezan</h3>
+                <p>Desenvolvedora</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">M</div>
+                <h3>Matheus Costa</h3>
+                <p>Desenvolvedor</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">M</div>
+                <h3>Miguel Picinin</h3>
+                <p>Desenvolvedor</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">P</div>
+                <h3>Pedro Henrique Pires</h3>
+                <p>Desenvolvedor</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">R</div>
+                <h3>Raphael</h3>
+                <p>Desenvolvedor</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="download">
+        <h2>Pronto para proteger seu pet?</h2>
+        <a href="#" class="cta-button">Baixe o App Agora</a>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PetLoc</h3>
+                <p>Solução completa para localização de pets perdidos. Conectamos tutores e ajudamos a encontrar animais desaparecidos.</p>
+                <div class="social-links">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">t</a>
+                    <a href="#" class="social-icon">i</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#funcionalidades">Funcionalidades</a></li>
+                    <li><a href="#como-funciona">Como Funciona</a></li>
+                    <li><a href="#equipe">Equipe</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <ul>
+                    <li>Email: contato@petloc.com</li>
+                    <li>Telefone: (11) 99999-9999</li>
+                    <li>Endereço: São Paulo, SP</li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 PetLoc. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if(window.innerWidth <= 768) {
+                        document.querySelector('.nav-links').style.display = 'none';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
