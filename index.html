@@ -155,6 +155,9 @@
             text-align: center;
             box-shadow: var(--shadow);
             transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .feature-card:hover {
@@ -164,19 +167,23 @@
         .feature-icon {
             background-color: var(--primary-color);
             color: var(--light-text);
-            width: 70px;
-            height: 70px;
+            width: 100px;  /* AUMENTADO de 70px */
+            height: 100px; /* AUMENTADO de 70px */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
-            font-size: 1.8rem;
+            font-size: 2.2rem; /* AUMENTADO de 1.8rem */
         }
 
         .feature-card h3 {
             margin-bottom: 1rem;
             color: var(--primary-color);
+        }
+
+        .feature-card p {
+            line-height: 1.5;
         }
 
         /* How It Works */
@@ -203,14 +210,14 @@
         .step-number {
             background-color: var(--primary-color);
             color: var(--light-text);
-            width: 50px;
-            height: 50px;
+            width: 60px;  /* AUMENTADO de 50px */
+            height: 60px; /* AUMENTADO de 50px */
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1rem;
-            font-size: 1.5rem;
+            font-size: 1.8rem; /* AUMENTADO de 1.5rem */
             font-weight: bold;
         }
 
@@ -256,17 +263,20 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
         }
 
         .team-member {
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .member-avatar {
-            width: 150px;
-            height: 150px;
+            width: 180px;   /* AUMENTADO de 150px */
+            height: 180px;  /* AUMENTADO de 150px */
             border-radius: 50%;
             background-color: var(--primary-color);
             margin: 0 auto 1rem;
@@ -274,7 +284,19 @@
             align-items: center;
             justify-content: center;
             color: var(--light-text);
-            font-size: 3rem;
+            font-size: 4rem; /* AUMENTADO de 3rem */
+            font-weight: bold;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            margin: 0.5rem 0 0.3rem 0;
+            color: var(--primary-color);
+        }
+
+        .member-role {
+            font-size: 1rem;
+            color: #666;
         }
 
         /* CTA Section */
@@ -291,28 +313,28 @@
 
         /* Footer */
         footer {
-            background-color: #333;
+            background-color: #222;
             color: var(--light-text);
             padding: 3rem 2rem 1rem;
         }
 
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .footer-section {
-            flex: 1;
-            min-width: 250px;
+            display: flex;
+            flex-direction: column;
         }
 
         .footer-section h3 {
             margin-bottom: 1.5rem;
             color: var(--primary-color);
+            font-size: 1.3rem;
         }
 
         .footer-section ul {
@@ -326,17 +348,45 @@
         .footer-section a {
             color: var(--light-text);
             text-decoration: none;
-            transition: opacity 0.3s;
+            transition: color 0.3s;
         }
 
         .footer-section a:hover {
-            opacity: 0.8;
+            color: var(--primary-color);
+        }
+
+        /* Estilo para os links do projeto */
+        .project-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            background-color: rgba(26, 115, 232, 0.1);
+            border-radius: 8px;
+            border: 1px solid rgba(26, 115, 232, 0.3);
+            transition: all 0.3s;
+        }
+
+        .project-link:hover {
+            background-color: rgba(26, 115, 232, 0.2);
+            transform: translateX(5px);
+        }
+
+        .project-icon {
+            font-size: 1.2rem;
         }
 
         .social-links {
             display: flex;
             gap: 1rem;
             margin-top: 1rem;
+            flex-wrap: wrap;
         }
 
         .social-icon {
@@ -357,14 +407,29 @@
         .copyright {
             text-align: center;
             margin-top: 3rem;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-color);
+                flex-direction: column;
+                padding: 1rem;
                 display: none;
+                z-index: 99;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
             }
 
             .mobile-menu {
@@ -377,6 +442,38 @@
 
             .steps {
                 flex-direction: column;
+            }
+
+            .feature-icon {
+                width: 90px;
+                height: 90px;
+                font-size: 2rem;
+            }
+
+            .member-avatar {
+                width: 160px;
+                height: 160px;
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 1rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card {
+                padding: 1.5rem;
+            }
+            
+            .member-avatar {
+                width: 140px;
+                height: 140px;
+                font-size: 3rem;
             }
         }
     </style>
@@ -477,16 +574,16 @@
         </div>
         <div class="screens-container">
             <div class="screen">
-                <img src="https://via.placeholder.com/250x500/1A73E8/FFFFFF?text=Tela+Principal" alt="Tela Principal do App">
+                <img src="./Imagens/Home.png" alt="Tela Principal do App" onerror="this.src='https://via.placeholder.com/250x500/1A73E8/FFFFFF?text=Tela+Principal'">
             </div>
             <div class="screen">
-                <img src="https://via.placeholder.com/250x500/FFFFFF/1A73E8?text=Pets+Cadastrados" alt="Tela de Pets Cadastrados">
+                <img src="./Imagens/PetsCadastrados.png" alt="Tela de Pets Cadastrados" onerror="this.src='https://via.placeholder.com/250x500/FFFFFF/1A73E8?text=Pets+Cadastrados'">
             </div>
             <div class="screen">
-                <img src="https://via.placeholder.com/250x500/1A73E8/FFFFFF?text=Mapa+de+Localização" alt="Tela de Loja">
+                <img src="./Imagens/Loja.png" alt="Tela de Loja" onerror="this.src='https://via.placeholder.com/250x500/1A73E8/FFFFFF?text=Loja'">
             </div>
             <div class="screen">
-                <img src="https://via.placeholder.com/250x500/FFFFFF/1A73E8?text=Comunidade" alt="Tela da Comunidade">
+                <img src="./Imagens/Comunidade.png" alt="Tela da Comunidade" onerror="this.src='https://via.placeholder.com/250x500/FFFFFF/1A73E8?text=Comunidade'">
             </div>
         </div>
     </section>
@@ -500,28 +597,28 @@
         <div class="team-grid">
             <div class="team-member">
                 <div class="member-avatar">L</div>
-                <h3>Luisa Torrezan</h3>
-                <p>Desenvolvedora</p>
+                <h3 class="member-name">Luisa Torrezan</h3>
+                <p class="member-role">Desenvolvedora</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">M</div>
-                <h3>Matheus Costa</h3>
-                <p>Desenvolvedor</p>
+                <h3 class="member-name">Matheus Costa</h3>
+                <p class="member-role">Desenvolvedor</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">M</div>
-                <h3>Miguel Picinin</h3>
-                <p>Desenvolvedor</p>
+                <h3 class="member-name">Miguel Picinin</h3>
+                <p class="member-role">Desenvolvedor</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">P</div>
-                <h3>Pedro Henrique Pires</h3>
-                <p>Desenvolvedor</p>
+                <h3 class="member-name">Pedro Henrique Pires</h3>
+                <p class="member-role">Desenvolvedor</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">R</div>
-                <h3>Raphael</h3>
-                <p>Desenvolvedor</p>
+                <h3 class="member-name">Raphael</h3>
+                <p class="member-role">Desenvolvedor</p>
             </div>
         </div>
     </section>
@@ -539,9 +636,9 @@
                 <h3>PetLoc</h3>
                 <p>Solução completa para localização de pets perdidos. Conectamos tutores e ajudamos a encontrar animais desaparecidos.</p>
                 <div class="social-links">
-                    <a href="https://github.com/MiguelMPicinin/petloc-web.git" class="social-icon">Github Web</a>
-                    <a href="https://github.com/MiguelMPicinin/pet_loc.git" class="social-icon">Github Mobile</a>
-                    <a href="https://docs.google.com/document/d/1FQlN0xuNl2DNCEG3muibKA9CKNjFsQKuYWhPdWu-lm8/edit?usp=sharing" class="social-icon">Documentação Completa</a>
+                    <a href="#" class="social-icon">📱</a>
+                    <a href="#" class="social-icon">📧</a>
+                    <a href="#" class="social-icon">💬</a>
                 </div>
             </div>
             <div class="footer-section">
@@ -554,24 +651,50 @@
                 </ul>
             </div>
             <div class="footer-section">
+                <h3>Links do Projeto</h3>
+                <div class="project-links">
+                    <a href="https://github.com/MiguelMPicinin/petloc-web.git" target="_blank" class="project-link">
+                        <span class="project-icon">🌐</span>
+                        <span>GitHub - Web</span>
+                    </a>
+                    <a href="https://github.com/MiguelMPicinin/pet_loc.git" target="_blank" class="project-link">
+                        <span class="project-icon">📱</span>
+                        <span>GitHub - Mobile</span>
+                    </a>
+                    <a href="https://docs.google.com/document/d/1FQlN0xuNl2DNCEG3muibKA9CKNjFsQKuYWhPdWu-lm8/edit?usp=sharing" target="_blank" class="project-link">
+                        <span class="project-icon">📄</span>
+                        <span>Documentação Completa</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
                 <h3>Contato</h3>
                 <ul>
-                    <li>Email: admin@petloc.com</li>
-                    <li>Telefone: (11) 99842-0131</li>
-                    <li>Endereço: Limeira, SP</li>
+                    <li>📧 Email: admin@petloc.com</li>
+                    <li>📞 Telefone: (11) 99842-0131</li>
+                    <li>📍 Endereço: Limeira, SP</li>
                 </ul>
             </div>
         </div>
         <div class="copyright">
-            <p>&copy; 2025 PetLoc. Todos os direitos reservados.</p>
+            <p>&copy; 2025 PetLoc. Todos os direitos reservados. | Desenvolvido com ❤️ para pets e seus tutores</p>
         </div>
     </footer>
 
     <script>
         // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenu.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
         });
 
         // Smooth scrolling for anchor links
@@ -588,14 +711,24 @@
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    if(window.innerWidth <= 768) {
-                        document.querySelector('.nav-links').style.display = 'none';
-                    }
                 }
             });
         });
+
+        // Add hover effect to team members
+        document.querySelectorAll('.team-member').forEach(member => {
+            member.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            member.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Console log para verificação
+        console.log('Página PetLoc carregada com sucesso!');
     </script>
 </body>
 </html>
